@@ -1,0 +1,60 @@
+package com.aurorion.aurorionbackend;
+
+
+@Entity
+@Table(name = "categories")
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Integer id;
+
+    @Column(name = "category_name")
+
+    private @NotBlank String categoryName;
+    private @NotBlank String categoryDescription;
+
+    @Column(name = "image url")
+
+    private @NotBlank String ImageURL;
+
+    // Getter for 'id'
+    public Integer getId() {
+        return id;
+    }
+
+    // Setter for 'id'
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    // Getter for 'categoryName'
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    // Setter for 'categoryName'
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    // Getter for 'categoryDescription'
+    public String getCategoryDescription() {
+        return categoryDescription;
+    }
+
+    // Setter for 'categoryDescription'
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    // Getter for 'imageURL'
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    // Setter for 'imageURL'
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+}
