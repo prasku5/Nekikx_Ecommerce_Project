@@ -1,2 +1,7 @@
 aurorion_backend/target/ecommerce-0.0.1-SNAPSHOT.jar
 aurorion_backend/.DS_Store
+aurorion_adminstrator/node_modules
+aurorion_adminstrator/ecommerce-admin-dashboard-next13/node_modules
+aurorion_adminstrator/ecommerce-admin-dashboard-next13/.env.local
+aurorion_frontend/node_modules
+aurorion_frontend/.env
