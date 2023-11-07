@@ -4,6 +4,8 @@ import Gallery from "@/components/gallery";
 import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
+import ProductReview from "@/components/ProductReview/product-review";
+
 
 export const revalidate = 0;
 
@@ -32,7 +34,9 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
               <Info data={product}/>
             </div>
+            <hr className="my-10" />
           </div>
+          <ProductReview />
           <hr className="my-10" />
           <ProductList title="Related items" items={suggestedProducts} />
         </div>
