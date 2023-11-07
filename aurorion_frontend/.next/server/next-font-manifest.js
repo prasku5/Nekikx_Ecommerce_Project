@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/prasku/Documents/Manasa Documents/final_code_base/Nekikx_Ecommerce_Project/aurorion_frontend/app/layout\":[\"static/media/01af0fc7b4278e65-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
