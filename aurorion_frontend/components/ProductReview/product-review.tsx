@@ -37,7 +37,7 @@ const ProductReview = ({
             }
           : {};
         const { data: { data, hasReviewAdded } = [] } = await axios.get(
-          `http://localhost:8080/api/reviews?productId=${productId}`,
+          `http://localhost:8080/reviews/product/${productId}`,
           headerConfig
         );
 
