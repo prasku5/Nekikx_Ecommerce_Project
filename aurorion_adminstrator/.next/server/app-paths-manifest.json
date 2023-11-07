@@ -1,7 +1,8 @@
 {
-  "/api/[storeId]/products/route": "app/api/[storeId]/products/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/[storeId]/categories/route": "app/api/[storeId]/categories/route.js",
+  "/api/[storeId]/products/route": "app/api/[storeId]/products/route.js",
   "/(dashboard)/[storeId]/(routes)/page": "app/(dashboard)/[storeId]/(routes)/page.js",
   "/api/[storeId]/billboards/[billboardId]/route": "app/api/[storeId]/billboards/[billboardId]/route.js",
-  "/(dashboard)/[storeId]/(routes)/orders/page": "app/(dashboard)/[storeId]/(routes)/orders/page.js"
+  "/(dashboard)/[storeId]/(routes)/billboards/page": "app/(dashboard)/[storeId]/(routes)/billboards/page.js"
 }

@@ -6,16 +6,6 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/(root)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(root)/layout.js"
-    ],
-    "/(root)/(routes)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(root)/(routes)/page.js"
-    ],
     "/(dashboard)/[storeId]/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,10 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/[storeId]/(routes)/page.js"
     ],
-    "/(dashboard)/[storeId]/(routes)/orders/page": [
+    "/(dashboard)/[storeId]/(routes)/billboards/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/[storeId]/(routes)/orders/page.js"
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/billboards/page.js"
     ]
   }
 }

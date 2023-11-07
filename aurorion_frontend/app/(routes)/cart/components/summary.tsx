@@ -1,3 +1,5 @@
+//version 1 code
+
 // "use client";
 
 // import axios from "axios";
@@ -75,7 +77,6 @@ import { toast } from "react-hot-toast"; // Import 'toast' for displaying notifi
 import Button from "@/components/ui/button"; // Import a custom 'Button' component
 import Currency from "@/components/ui/currency"; // Import a custom 'Currency' component
 import useCart from "@/hooks/use-cart"; // Import a custom 'useCart' hook for managing the shopping cart state
-import Link from 'next/link'; // Import 'Link' from Next.js for navigating to another page
 import { useRouter } from 'next/navigation'; // Import 'useRouter' from 'next/navigation' for accessing the router
 
 // Function to generate a random alphanumeric order confirmation ID
