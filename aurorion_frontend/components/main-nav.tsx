@@ -5,6 +5,13 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Import 'useRouter' from next/navigation
 import { Category } from "@/types";
 import { Button } from 'flowbite-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ReactDOM from 'react-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas} from '@fortawesome/free-solid-svg-icons'
+import { Bold } from "lucide-react";
+
+library.add(fas)
 
 interface MainNavProps {
   data: Category[];
@@ -53,9 +60,10 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
       ))}
 
 {userData ? (
-    <div className="flex items-center space-x-4" style={{ paddingLeft: "400px" }} >
+    <div className="flex items-center space-x-4" style={{ paddingLeft: "350px" }} >
+      <FontAwesomeIcon icon="fa-solid fa-face-smile"  className="fa-2x" style={{ marginRight: "10px" } }/>
       <p className="text-sm font-medium text-neutral-500">
-        User: {userData.email}
+         User: {userData.email} 
       </p>
         <div className="flex flex-wrap gap-2">
           <Button color="light" onClick={handleLogoutClick}>
@@ -64,8 +72,9 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
         </div>
       </div>
     ) : (
-      <div className="flex items-center space-x-4" style={{ paddingLeft: "430px" }}>
-        <p className="text-sm font-small text-neutral-500" style={{ width: "110px", paddingLeft: "1px" }}>
+      <div className="flex items-center space-x-4" style={{ paddingLeft: "380px" }}>
+        <p className="text-sm font-small text-neutral-500" style={{ width: "150px", paddingLeft: "1px" }}>
+        <FontAwesomeIcon icon="fa-solid fa-circle-user" style={{ marginRight: "10px" }}/>
           <strong>Welcome Guest</strong>
         </p>
         <Button color="light" onClick={handleLoginClick} style={{ width: "100px" }}>
