@@ -35,6 +35,7 @@ public class ProductReviewController {
 
     @GetMapping("/product/{productId}")
     public List<ProductReview> getReviewsByProductId(@PathVariable String productId) {
+        System.out.println(" entered into ProductReviewController");
         return reviewService.getProductReviews(productId);
     }
 }

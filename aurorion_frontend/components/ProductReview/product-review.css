@@ -1,54 +1,102 @@
-  h1 {
-    border-bottom: 1px solid white;
-    color: #3d3d3d;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    padding: 10px;
-    text-align: center;
-  }
-
-  form {
-    background: white;
-    border: 1px solid #dedede;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 0 auto;
-    max-width: 500px;
-    padding: 30px 50px;
-  }
-
-  input {
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    box-sizing: border-box;
-    padding: 10px;
-    width: 100%;
-  }
-
-  label {
-    color: #3d3d3d;
-    display: block;
-    font-family: sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
-
-  .error {
-    color: red;
-    font-family: sans-serif;
-    font-size: 12px;
-    height: 30px;
-  }
-
-  .submitButton {
-    background-color: #6976d9;
-    color: white;
-    font-family: sans-serif;
-    font-size: 14px;
-    margin: 20px 0px;
-  }
+.submit-button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  border-radius: 12px; /* Add rounded corners */
+}
+.submit-button:disabled {
+  cursor: default;
+}
+.submit-button:-moz-focusring {
+  outline: auto;
+}
+.submit-button svg {
+  display: block;
+  vertical-align: middle;
+}
+.submit-button [hidden] {
+  display: none;
+}
+.submit-button {
+  --neon: #0ea5e9;
+  box-sizing: border-box;
+  display: block;
+  font-weight: 900;
+  -webkit-mask-image: none;
+  outline: 4px solid #fff;
+  outline-offset: -4px;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-transform: uppercase;
+  transition: 0.2s linear 0.1s;
+}
+.submit-button:hover {
+  background: var(--neon);
+  box-shadow: 0 0 5px var(--neon), 0 0 25px var(--neon), 0 0 50px var(--neon),
+    0 0 100px var(--neon);
+  color: #fff;
+  outline-color: transparent;
+  transition: 0.2s linear 0.6s;
+}
+.submit-button span {
+  display: block;
+  inset: 0;
+  position: absolute;
+}
+.submit-button .top {
+  border-top: 4px solid var(--neon);
+  opacity: 0;
+  transform: translateX(calc(-100% + var(--progress, 0%)));
+  transition: none;
+}
+.submit-button:hover .top {
+  --progress: 100%;
+  opacity: 1;
+  transition: transform 0.2s linear;
+}
+.submit-button .right {
+  border-right: 4px solid var(--neon);
+  opacity: 0;
+  transform: translateY(calc(-100% + var(--progress, 0%)));
+  transition: none;
+}
+.submit-button:hover .right {
+  --progress: 100%;
+  opacity: 1;
+  transition: transform 0.2s linear 0.2s;
+}
+.submit-button .bottom {
+  border-bottom: 4px solid var(--neon);
+  opacity: 0;
+  transform: translateX(calc(100% - var(--progress, 0%)));
+  transition: none;
+}
+.submit-button:hover .bottom {
+  --progress: 100%;
+  opacity: 1;
+  transition: transform 0.2s linear 0.4s;
+}
+.submit-button .left {
+  border-left: 4px solid var(--neon);
+  opacity: 0;
+  transform: translateY(calc(100% - var(--progress, 0%)));
+  transition: none;
+}
+.submit-button:hover .left {
+  --progress: 100%;
+  opacity: 1;
+  transition: transform 0.2s linear 0.6s;
+}
 

@@ -8,6 +8,7 @@ import { Rating } from "react-simple-star-rating";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
 import axios from "axios";
+import "./product-review.css";
 
 const ProductReview = ({ productId}) => {
   // console.log("inside the product review component and product id is", productId);
@@ -20,6 +21,10 @@ const ProductReview = ({ productId}) => {
     reviewerName: "",
     createdAt: new Date(),
   });
+
+  
+
+  const [selectedRating, setSelectedRating] = useState(0);
 
 
   const handleReviewerName = ({ target: { value } }) => {
@@ -34,6 +39,20 @@ const ProductReview = ({ productId}) => {
     setReview({ ...review, reviewText: value });
   };
 
+
+
+  const [activeStarColors, setActiveStarColors] = useState(new Array(5).fill('gray'));
+
+  const handleRatingChange = (newRating) => {
+    setSelectedRating(newRating);
+    const updatedActiveStarColors = [...activeStarColors];
+    for (let i = 0; i < newRating; i++) {
+      updatedActiveStarColors[i] = '#ffd700';
+    }
+    setActiveStarColors(updatedActiveStarColors);
+  };
+
+
   // console.log("outside useeffect : product id is", productId);
 
   useEffect(() => {
@@ -44,7 +63,7 @@ const ProductReview = ({ productId}) => {
           `http://localhost:8080/reviews/product/${productId}`
         );
 
-        console.log("reviews", JSON.stringify(response.data))
+        // console.log("reviews", JSON.stringify(response.data))
 
 
         // Calculate the average rating
@@ -78,8 +97,8 @@ const ProductReview = ({ productId}) => {
       return;
     }
     if (review.reviewerName && review.reviewText && review.stars && productId) {
-        console.log("inside the if statement");
-        console.log("psote review", review);
+        // console.log("inside the if statement");
+        // console.log("psote review", review);
       try {
         axios.post(`http://localhost:8080/reviews`, {
           ...review,
@@ -103,44 +122,61 @@ const ProductReview = ({ productId}) => {
   return (
     <div className="product-reviews">
     {isReviewAdded ? null : (
-      <div>
-      <h1 style={{ fontSize: '32px' }}><strong>User reviews</strong></h1>
-      <Form>
-        <FormGroup className="mb-3">
-          <Label for="reviewerName">Your Name</Label>
-          <Input
-            type="text"
-            name="reviewerName"
-            id="reviewerName"
-            onChange={handleReviewerName}
-            style={{ border: "1px solid black" }}
-          />
-        </FormGroup>
-        <FormGroup className="mb-3">
-        <Label for="exampleText" style={{ display: 'inline-block' }}>Overall rating</Label>
+     <div style={{ margin: '5px' }}>
+     <h1 style={{ fontSize: '26px' }}><strong>User reviews</strong></h1>
+     <br />
+     <Form>
+       <FormGroup className="mb-3">
+         <Label for="reviewerName" style={{ marginRight: '93px' }}>Your Name</Label>
+         <Input
+           type="text"
+           name="reviewerName"
+           id="reviewerName"
+           onChange={handleReviewerName}
+           style={{
+             border: "1px solid black",
+             width: '250px',
+             padding: '5px',
+             fontSize: '16px'
+           }}
+         />
+       </FormGroup>
+       <FormGroup className="mb-3" style={{ display: 'flex' }}>
+        <Label for="exampleText" style={{ marginRight: '75px' }}>Overall rating</Label>
         <ReactStars
           count={5}
-          onChange={handleRating}
+          value={selectedRating}
+          onChange={handleRatingChange}
           size={24}
-          color2={'#ffd700'}
-          style={{ display: 'inline-block' }}
+          activeColor={'#ffd700'}
+          inactiveColor={'gray'}
+          colors={activeStarColors}
+          style={{ marginLeft: '10px' }}
         />
-        </FormGroup>
-        <FormGroup className="mb-3">
-          <Label for="reviewText">Leave your review here</Label>
-          <Input
-            type="textarea"
-            name="reviewText"
-            id="reviewText"
-            onChange={handleReviewText}
-            style={{ border: "1px solid black" }}
-          />
-        </FormGroup>
-        <Button color="info" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
-    </div>
+      </FormGroup>
+       <FormGroup className="mb-3">
+         <Label for="reviewText" style={{ marginRight: '10px' }}>Leave your review here</Label>
+         <Input
+           type="textarea"
+           name="reviewText"
+           id="reviewText"
+           onChange={handleReviewText}
+           style={{
+             border: "1px solid black",
+             width: '350px',
+             height: '100px',
+             padding: '5px',
+             fontSize: '16px'
+           }}
+         />
+       </FormGroup>
+       <br />
+       <br />
+       <Button className="submit-button" color="info" style={{ border: '1px solid black' }} onClick={handleSubmit}>
+         Submit Review
+       </Button>
+     </Form>
+   </div>
     )}
 
     {reviews.length ? (
