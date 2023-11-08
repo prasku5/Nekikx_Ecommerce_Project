@@ -47,12 +47,18 @@ const ProductReview = ({ productId}) => {
   const [activeStarColors, setActiveStarColors] = useState(new Array(5).fill('gray'));
 
   const handleRatingChange = (newRating) => {
-    setSelectedRating(newRating);
-    const updatedActiveStarColors = [...activeStarColors];
-    for (let i = 0; i < newRating; i++) {
-      updatedActiveStarColors[i] = '#ffd700';
+    // Reset the selectedRating to 0 and activeStarColors to all 'gray' when a review is submitted
+    if (isReviewSubmitted) {
+      setSelectedRating(0);
+      setActiveStarColors(new Array(5).fill('gray'));
+    } else {
+      setSelectedRating(newRating);
+      const updatedActiveStarColors = [...activeStarColors];
+      for (let i = 0; i < newRating; i++) {
+        updatedActiveStarColors[i] = '#ffd700';
+      }
+      setActiveStarColors(updatedActiveStarColors);
     }
-    setActiveStarColors(updatedActiveStarColors);
   };
 
 
@@ -114,10 +120,23 @@ const ProductReview = ({ productId}) => {
           ...review,
           productId
         });
+
+        // Clear the form fields and update the reviews state
+        setReview({
+          stars: 0,
+          reviewText: "",
+          reviewerName: "",
+          createdAt: new Date(),
+        });
         
         setIsReviewSubmitted(true);
 
         setUpdateReviews(true);
+
+        setIsReviewAdded(true);
+        // Reset rating and active star colors
+        setSelectedRating(0); // Reset selected rating to 0
+        setActiveStarColors(new Array(5).fill('gray')); // Reset active star colors to all 'gray'
 
       } catch (error) {
         toast.error("There is an error occurred!", {
@@ -148,6 +167,7 @@ const ProductReview = ({ productId}) => {
            type="text"
            name="reviewerName"
            id="reviewerName"
+           value={review.reviewerName}
            onChange={handleReviewerName}
            style={{
              border: "1px solid black",
@@ -176,6 +196,7 @@ const ProductReview = ({ productId}) => {
            type="textarea"
            name="reviewText"
            id="reviewText"
+           value={review.reviewText}
            onChange={handleReviewText}
            style={{
              border: "1px solid black",
@@ -197,6 +218,7 @@ const ProductReview = ({ productId}) => {
         <div className="success-message">Review submitted successfully!</div>
       )}
    </div>
+   
     )}
 
     {reviews.length ? (

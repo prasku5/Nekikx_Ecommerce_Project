@@ -1,6 +1,6 @@
 {
   "/(routes)/page": "app/(routes)/page.js",
   "/(routes)/cart/page": "app/(routes)/cart/page.js",
-  "/(routes)/product/[productId]/page": "app/(routes)/product/[productId]/page.js",
-  "/(routes)/category/[categoryId]/page": "app/(routes)/category/[categoryId]/page.js"
+  "/(routes)/category/[categoryId]/page": "app/(routes)/category/[categoryId]/page.js",
+  "/(routes)/product/[productId]/page": "app/(routes)/product/[productId]/page.js"
 }
