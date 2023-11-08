@@ -5,13 +5,15 @@ import Currency from "@/components/ui/currency";
 import Button from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import useCart from "@/hooks/use-cart";
+import ReactStars from 'react-stars';
 
 interface InfoProps {
   data: Product;
+  averageRating: number;
 }
 
 const Info: React.FC<InfoProps> = ({
-  data
+  data, averageRating
 }) => {
   const cart = useCart();
 
@@ -36,6 +38,10 @@ const Info: React.FC<InfoProps> = ({
       <div className="flex items-center gap-x-4">
         <h3 className="font-semibold text-black">Color:</h3>
         <div className="h-6 w-6 rounded-full border border-gray-600" style={{ backgroundColor: data?.color?.value }}/>
+      </div>
+      <div className="rating-container">
+        <div className="rating-title">Average Rating:</div>
+        <ReactStars count={5} value={averageRating} size={24} activeColor={'#ffd700'} />
       </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">

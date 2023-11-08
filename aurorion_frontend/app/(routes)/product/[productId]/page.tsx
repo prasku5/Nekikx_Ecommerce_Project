@@ -5,7 +5,7 @@ import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
 import ProductReview from "@/components/ProductReview/product-review";
-
+import axios from "axios";
 
 export const revalidate = 0;
 
@@ -24,6 +24,16 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
   if (!product) {
     return null;
   }
+
+  
+  const response = await axios.get(
+    `http://localhost:8080/reviews/product/${params.productId}`
+  );
+
+  const reviewsData = response.data;
+  const totalRatings = reviewsData.reduce((acc, review) => acc + review.stars, 0);
+  const averageRating = totalRatings / 5 * reviewsData.length;
+
   
   return (
     <div className="bg-white">
@@ -32,7 +42,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
           <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
             <Gallery images={product.images} />
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-              <Info data={product}/>
+            <Info data={product} averageRating={averageRating} />
             </div>
             <hr className="my-10" />
           </div>

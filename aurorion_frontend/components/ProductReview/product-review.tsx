@@ -77,7 +77,7 @@ const ProductReview = ({ productId}) => {
 
         // Calculate the average rating
         const totalStars = response.data.reduce((acc, review) => acc + review.stars, 0);
-        // const averageRating = totalStars / 5 * response.data.length;
+        const averageRating = totalStars / 5 * response.data.length;
       
         
         // console.log("average rating", averageRating);
