@@ -230,7 +230,7 @@ const ProductReview = ({ productId}) => {
           <div className="review" style={{ border: "1px solid black" }}>
             <div className="customer">
              <IoPersonCircleOutline className="icon" style={{ fontSize: '25px' }} />
-              <span><b>Reviewed by:  </b>{reviewerName}</span>
+              <span><b>Reviewed Name:  </b>{reviewerName}</span>
             </div>
             <ReactStars
               size={24}
