@@ -18,7 +18,7 @@ public class ProductReviewService {
         return reviewRepository.save(productReview);
     }
 
-    public List<ProductReview> getProductReviews(Long productId) {
+    public List<ProductReview> getProductReviews(String productId) {
         return reviewRepository.findByProductId(productId);
-    } 
-}
+    }
+} 

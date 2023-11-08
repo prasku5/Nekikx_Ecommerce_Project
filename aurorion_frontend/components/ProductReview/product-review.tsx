@@ -167,8 +167,7 @@
 // };
 
 // export default ProductReview;
-
-
+// fix the below code for get request
 //verion 2
 "use client"
 import React, { useEffect, useState } from "react";
@@ -179,6 +178,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const ProductReview = ({ productId}) => {
+  // console.log("inside the product review component and product id is", productId);
   const [reviews, setReviews] = useState([]);
   const [updateReviews, setUpdateReviews] = useState(false);
   const [isReviewAdded, setIsReviewAdded] = useState(false);
@@ -200,22 +200,31 @@ const ProductReview = ({ productId}) => {
     setReview({ ...review, reviewText: value });
   };
 
+  // console.log("outside useeffect : product id is", productId);
+
   useEffect(() => {
-    const getReviews = async () => {
+     const getReviews = async () => {
       try {
-        const { data: { data, hasReviewAdded } = [] } = await axios.get(
+        console.log("inside the getReviews function and product id is", productId  );
+        const response = await axios.get(
           `http://localhost:8080/reviews/product/${productId}`
         );
 
-        let averageRating =
-          data.reduce((acc, value) => {
-            return acc + Number(value.stars);
-          }, 0) / data.length;
-        averageRating = Number(
-          averageRating > 0 ? averageRating.toFixed(1) : averageRating
-        );
-        setReviews(data.reverse());
-        setIsReviewAdded(hasReviewAdded);
+        console.log("reviews", JSON.stringify(response.data))
+
+
+        // Calculate the average rating
+        const totalStars = response.data.reduce((acc, review) => acc + review.stars, 0);
+        const averageRating = totalStars / 5 * response.data.length;
+      
+        
+        // console.log("average rating", averageRating);
+        // console.log("total length is", response.data.length);
+        // console.log("total stars", totalStars);
+        
+       
+        setReviews(response.data.reverse());
+        setIsReviewAdded(false);
         setUpdateReviews(false);
         setReview({});
       } catch (error) {
@@ -236,7 +245,7 @@ const ProductReview = ({ productId}) => {
     }
     if (review.reviewerName && review.reviewText && review.stars && productId) {
         console.log("inside the if statement");
-        console.log(review);
+        console.log("psote review", review);
       try {
         axios.post(`http://localhost:8080/reviews`, {
           ...review,
@@ -256,6 +265,7 @@ const ProductReview = ({ productId}) => {
     }
   };
 
+  
   return (
     <div className="product-reviews">
     {isReviewAdded ? null : (
@@ -320,6 +330,11 @@ const ProductReview = ({ productId}) => {
       </div>
     ) : null}
   </div>
+
+
 );
 };
 export default ProductReview;
+
+
+

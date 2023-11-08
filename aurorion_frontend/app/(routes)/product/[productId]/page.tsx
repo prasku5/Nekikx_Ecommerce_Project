@@ -36,7 +36,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
             </div>
             <hr className="my-10" />
           </div>
-          {/* <ProductReview /> */}
+
 
         <ProductReview
           productId= {params.productId}

@@ -29,12 +29,12 @@ public class ProductReviewController {
         System.out.println("productReview.getReviewerName(): " + productReview.getReviewerName());
         System.out.println("productReview.getStars(): " + productReview.getStars());
         System.out.println("productReview.getReviewText(): " + productReview.getReviewText());
-        
+
         return reviewService.saveProductReview(productReview);
     }
 
     @GetMapping("/product/{productId}")
-    public List<ProductReview> getReviewsByProductId(@PathVariable Long productId) {
+    public List<ProductReview> getReviewsByProductId(@PathVariable String productId) {
         return reviewService.getProductReviews(productId);
     }
 }
