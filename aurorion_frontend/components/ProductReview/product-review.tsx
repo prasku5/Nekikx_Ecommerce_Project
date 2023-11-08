@@ -162,7 +162,7 @@ const ProductReview = ({ productId}) => {
      <br />
      <Form>
        <FormGroup className="mb-3">
-         <Label for="reviewerName" style={{ marginRight: '93px' }}>Your Name</Label>
+         <Label for="reviewerName" style={{ marginRight: '93px' }}><b>Your Name</b></Label>
          <Input
            type="text"
            name="reviewerName"
@@ -170,15 +170,15 @@ const ProductReview = ({ productId}) => {
            value={review.reviewerName}
            onChange={handleReviewerName}
            style={{
-             border: "1px solid black",
-             width: '250px',
+             border: "3px solid black",
+             width: '352px',
              padding: '5px',
              fontSize: '16px'
            }}
          />
        </FormGroup>
        <FormGroup className="mb-3" style={{ display: 'flex' }}>
-        <Label for="exampleText" style={{ marginRight: '75px' }}>Overall rating</Label>
+        <Label for="exampleText" style={{ marginRight: '75px' }}><b>Overall rating</b></Label>
         <ReactStars
           count={5}
           value={selectedRating}
@@ -191,7 +191,7 @@ const ProductReview = ({ productId}) => {
         />
       </FormGroup>
        <FormGroup className="mb-3">
-         <Label for="reviewText" style={{ marginRight: '10px' }}>Leave your review here</Label>
+         <Label for="reviewText" style={{ marginRight: '10px' }}><b>Leave your review here</b></Label>
          <Input
            type="textarea"
            name="reviewText"
@@ -199,7 +199,7 @@ const ProductReview = ({ productId}) => {
            value={review.reviewText}
            onChange={handleReviewText}
            style={{
-             border: "1px solid black",
+             border: "3px solid black",
              width: '350px',
              height: '100px',
              padding: '5px',
