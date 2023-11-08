@@ -40,7 +40,7 @@ const Info: React.FC<InfoProps> = ({
         <div className="h-6 w-6 rounded-full border border-gray-600" style={{ backgroundColor: data?.color?.value }}/>
       </div>
       <div className="rating-container">
-        <div className="rating-title"><strong>Average Rating: ({averageRating})</strong></div>
+        <div className="rating-title"> <strong>Average Rating: {isNaN(averageRating) ? 0 : averageRating}</strong></div>
         {/* console.log("average rating is", {averageRating}); */}
         <ReactStars count={5} value={averageRating} size={24} activeColor={'#ffd700'} />
       </div>
