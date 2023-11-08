@@ -18,6 +18,9 @@ public class ProductReview {
     @Column(name = "stars")
     private int stars;
 
+     @Column(name = "review_text")
+    private String reviewText;
+
     @Column(name = "created_at")
     private Timestamp createdAt;
 
@@ -70,8 +73,7 @@ public class ProductReview {
         this.reviewText = reviewText;
     }
 
-    @Column(name = "review_text")
-    private String reviewText;
+   
 
     // Getters and setters
 }

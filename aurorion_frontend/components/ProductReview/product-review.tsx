@@ -27,19 +27,22 @@ const ProductReview = ({ productId}) => {
   const [selectedRating, setSelectedRating] = useState(0);
 
 
+  useEffect(() => {
+    // Update the review stars whenever selectedRating changes
+    setReview((prevReview) => ({
+      ...prevReview,
+      stars: selectedRating,
+    }));
+  }, [selectedRating]);
+
   const handleReviewerName = ({ target: { value } }) => {
     setReview({ ...review, reviewerName: value });
   };
 
-  const handleRating = (newRating) => {
-    setReview({ ...review, stars: newRating });
-  };
 
   const handleReviewText = ({ target: { value } }) => {
     setReview({ ...review, reviewText: value });
   };
-
-
 
   const [activeStarColors, setActiveStarColors] = useState(new Array(5).fill('gray'));
 
@@ -87,9 +90,14 @@ const ProductReview = ({ productId}) => {
     getReviews();
   }, [productId, updateReviews]);
 
+  
+  const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
+
 
   const handleSubmit = async () => {
+    
     console.log("submit button is clicked");
+    console.log("review before get request is after clicking submit", review);
     if (!review.reviewText || !review.stars) {
       toast.error("Both review stars and text are required*", {
         hideProgressBar: true,
@@ -98,13 +106,19 @@ const ProductReview = ({ productId}) => {
     }
     if (review.reviewerName && review.reviewText && review.stars && productId) {
         // console.log("inside the if statement");
-        // console.log("psote review", review);
+        console.log(" review just before post", review);
       try {
+        
+
         axios.post(`http://localhost:8080/reviews`, {
           ...review,
           productId
         });
+        
+        setIsReviewSubmitted(true);
+
         setUpdateReviews(true);
+
       } catch (error) {
         toast.error("There is an error occurred!", {
           hideProgressBar: true,
@@ -117,6 +131,8 @@ const ProductReview = ({ productId}) => {
       });
     }
   };
+
+
 
   
   return (
@@ -176,6 +192,10 @@ const ProductReview = ({ productId}) => {
          Submit Review
        </Button>
      </Form>
+     <br />
+     {isReviewSubmitted && (
+        <div className="success-message">Review submitted successfully!</div>
+      )}
    </div>
     )}
 

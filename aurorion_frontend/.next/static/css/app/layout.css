@@ -636,9 +636,6 @@ video {
 .mt-6 {
   margin-top: 1.5rem;
 }
-.inline-block {
-  display: inline-block;
-}
 .flex {
   display: flex;
 }

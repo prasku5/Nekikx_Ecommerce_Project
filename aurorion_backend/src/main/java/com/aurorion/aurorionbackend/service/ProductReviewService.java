@@ -15,6 +15,7 @@ public class ProductReviewService {
     }
 
     public ProductReview saveProductReview(ProductReview productReview) {
+        System.out.printf(" entered into ProductReviewService with value", productReview);
         return reviewRepository.save(productReview);
     }
 
