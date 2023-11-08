@@ -21,7 +21,15 @@ public class ProductReviewController {
     }
 
     @PostMapping
-    public ProductReview addReview(@RequestBody ProductReview productReview) {
+    public ProductReview addReview(@RequestBody ProductReview productReview) 
+    {
+        // System.out.println(" entered into ProductReviewController");
+        System.out.println("productReview: " + productReview);
+        System.out.println("productReview.getProductId(): " + productReview.getProductId());
+        System.out.println("productReview.getReviewerName(): " + productReview.getReviewerName());
+        System.out.println("productReview.getStars(): " + productReview.getStars());
+        System.out.println("productReview.getReviewText(): " + productReview.getReviewText());
+        
         return reviewService.saveProductReview(productReview);
     }
 
