@@ -1,12 +1,12 @@
 {
+  "/api/[storeId]/products/route": "app/api/[storeId]/products/route.js",
+  "/api/[storeId]/categories/route": "app/api/[storeId]/categories/route.js",
   "/api/[storeId]/sizes/route": "app/api/[storeId]/sizes/route.js",
   "/api/[storeId]/colors/route": "app/api/[storeId]/colors/route.js",
-  "/api/[storeId]/products/route": "app/api/[storeId]/products/route.js",
-  "/api/[storeId]/checkout/route": "app/api/[storeId]/checkout/route.js",
-  "/api/[storeId]/billboards/[billboardId]/route": "app/api/[storeId]/billboards/[billboardId]/route.js",
-  "/api/[storeId]/products/[productId]/route": "app/api/[storeId]/products/[productId]/route.js",
-  "/api/[storeId]/categories/[categoryId]/route": "app/api/[storeId]/categories/[categoryId]/route.js",
   "/(dashboard)/[storeId]/(routes)/page": "app/(dashboard)/[storeId]/(routes)/page.js",
-  "/api/[storeId]/categories/route": "app/api/[storeId]/categories/route.js",
+  "/api/[storeId]/billboards/[billboardId]/route": "app/api/[storeId]/billboards/[billboardId]/route.js",
+  "/api/[storeId]/categories/[categoryId]/route": "app/api/[storeId]/categories/[categoryId]/route.js",
+  "/api/[storeId]/products/[productId]/route": "app/api/[storeId]/products/[productId]/route.js",
+  "/(dashboard)/[storeId]/(routes)/products/page": "app/(dashboard)/[storeId]/(routes)/products/page.js",
   "/(dashboard)/[storeId]/(routes)/orders/page": "app/(dashboard)/[storeId]/(routes)/orders/page.js"
 }

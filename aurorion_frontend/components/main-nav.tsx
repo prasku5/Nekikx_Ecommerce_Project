@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Import 'useRouter' from next/navigation
 import { Category } from "@/types";
+import { Button } from 'flowbite-react';
 
 interface MainNavProps {
   data: Category[];
@@ -12,6 +13,8 @@ interface MainNavProps {
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
   const router = useRouter(); // Use useRouter from next/navigation
+
+  const userData = JSON.parse(localStorage.getItem('userData'));
 
   const routes = data.map((route) => ({
     href: `/category/${route.id}`,
@@ -28,8 +31,14 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
     // console.log('Sign Up')
   };
 
+  const handleLogoutClick = () => {
+    localStorage.removeItem('userData');
+    window.location.reload(); // Reload the page to update the navbar
+  };
+
   return (
     <nav className="mx-6 flex items-center lg:space-x-6  space-x-4 ">
+
       {routes.map((route) => (
         <Link
           key={route.href}
@@ -42,16 +51,32 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
           {route.label}
         </Link>
       ))}
-      {/* Buttons */}
-      <div className="flex items-center space-x-4">
-        <button onClick={handleLoginClick} className="text-sm font-medium text-neutral-500 hover:text-black">
-          Login
-        </button>
-        <button onClick={handleSignUpClick} className="text-sm font-medium text-neutral-500 hover:text-black">
-          Sign Up
-        </button>
+
+{userData ? (
+    <div className="flex items-center space-x-4" style={{ paddingLeft: "400px" }} >
+      <p className="text-sm font-medium text-neutral-500">
+        User: {userData.email}
+      </p>
+        <div className="flex flex-wrap gap-2">
+          <Button color="light" onClick={handleLogoutClick}>
+            Logout
+          </Button>
+        </div>
       </div>
-    </nav>
+    ) : (
+      <div className="flex items-center space-x-4" style={{ paddingLeft: "430px" }}>
+        <p className="text-sm font-small text-neutral-500" style={{ width: "110px", paddingLeft: "1px" }}>
+          <strong>Welcome Guest</strong>
+        </p>
+        <Button color="light" onClick={handleLoginClick} style={{ width: "100px" }}>
+            Login
+        </Button>
+        <Button color="light" onClick={handleSignUpClick} style={{ width: "100px" }}>
+          Sign Up
+        </Button>
+      </div>
+  )}
+</nav>
   );
 };
 

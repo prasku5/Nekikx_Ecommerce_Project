@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import Router from 'next/router';
 
 function Copyright(props: any) {
   return (
@@ -65,7 +66,7 @@ export default function SignUp() {
           if (data === 'Email already exists') {
             setSignUpMessage('Email already exists. Please sign in.');
           } else {
-            setSignUpMessage('Signup successful!');
+            setSignUpMessage('Signup successful! Redirecting to login page.');
           }
         } else {
           // Handle plain text response
@@ -78,6 +79,10 @@ export default function SignUp() {
     } catch (error) {
       console.error('Error during signup:', error);
     }
+    // Wait for 2 seconds before redirecting to login page
+    setTimeout(() => {
+      Router.push('/Login');
+    }, 2000);
   };
 
   const handleSubmit = async (event) => {

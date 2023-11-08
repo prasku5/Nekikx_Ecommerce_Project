@@ -52,6 +52,7 @@ const Login = () => {
 
 const handleSignIn = async (event: { preventDefault: () => void; }) => {
         event.preventDefault(); // Prevents auto-refresh
+        // console.log("form response data is " , formData);
         try {
             const response = await fetch('http://localhost:8080/login', {
                 method: 'POST',
@@ -61,7 +62,7 @@ const handleSignIn = async (event: { preventDefault: () => void; }) => {
                 body: JSON.stringify(formData)
             });
             
-            console.log(response);
+            
 
             if (response.ok) {
                 const data = await response.json(); // Parse the response as JSON
@@ -70,12 +71,15 @@ const handleSignIn = async (event: { preventDefault: () => void; }) => {
                 if (data.success) {
                     setMessage(data.message);
         
-                    // // Store user data in local storage
-                    // localStorage.setItem('userData', JSON.stringify(formData));
+                    // Store user data in local storage
+                    localStorage.setItem('userData', JSON.stringify(formData));
+
+                    // console.log("form userData is " , formData)
                     
                     // Navigate to the homepage
                     router.push('/');
                 } else {
+
                     // Handle unsuccessful sign-in
                     console.log('Invalid email or password');
                     const data = await response.json();
