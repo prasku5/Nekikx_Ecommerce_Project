@@ -32,8 +32,10 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
 
   const reviewsData = response.data;
   const totalRatings = reviewsData.reduce((acc, review) => acc + review.stars, 0);
-  const averageRating = totalRatings / 5 * reviewsData.length;
-
+  // console.log("total ratings inside product component is", totalRatings);
+  const averageRating = ((totalRatings / (5 * reviewsData.length)) * 5).toFixed(1);
+  
+  // console.log("average rating inside product component is", averageRating);
   
   return (
     <div className="bg-white">

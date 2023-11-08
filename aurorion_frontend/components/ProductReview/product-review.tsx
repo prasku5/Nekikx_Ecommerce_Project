@@ -224,7 +224,7 @@ const ProductReview = ({ productId}) => {
     {reviews.length ? (
       <div className="reviews">
         <br />
-        <h1 style={{ fontSize: '26px' }}><strong>Customer reviews:</strong></h1>
+        <h1 style={{ fontSize: '26px' }}><strong>Customer reviews ({reviews.length})</strong></h1>
         <br />
         {reviews.map(({ reviewText, stars, reviewerName, createdAt }) => (
           <div className="review" style={{ border: "1px solid black" }}>
