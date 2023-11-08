@@ -7,7 +7,7 @@ import com.aurorion.aurorionbackend.model.ProductReview;
 public interface ProductReviewRepository extends JpaRepository<ProductReview, Long> {
     
     List<ProductReview> findByProductId(String productId);
-
+    
     
     
 }

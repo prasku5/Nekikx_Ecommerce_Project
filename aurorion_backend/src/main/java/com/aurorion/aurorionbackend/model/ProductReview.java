@@ -1,4 +1,5 @@
 package com.aurorion.aurorionbackend.model;
+import java.sql.Timestamp;
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +17,18 @@ public class ProductReview {
 
     @Column(name = "stars")
     private int stars;
+
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;
