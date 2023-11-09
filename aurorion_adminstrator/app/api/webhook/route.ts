@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   const signature = headers().get("Stripe-Signature") as string;
 
-  let event: Stripe.Event;
+  let event: Stripe.Event; 
 
   try {
     event = stripe.webhooks.constructEvent(
@@ -22,6 +22,8 @@ export async function POST(req: Request) {
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
+  console.log("Order Session Details in json:", JSON.stringify(session));
+
   const address = session?.customer_details?.address;
 
   const addressComponents = [

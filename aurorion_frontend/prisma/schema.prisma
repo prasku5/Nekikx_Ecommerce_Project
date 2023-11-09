@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model OrderDetails {
+  confirmation_id String   @id
+  order_time     DateTime
+  total_items    Int
+  order_total    Decimal
+}
+
+// Prisma schema for order_items table
+model OrderItems {
+  confirmation_id String   @id 
+  name           String   
+  price          Decimal  
+  size           String   
+  color          String   
+  category_name  String   
+}

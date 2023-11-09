@@ -77,6 +77,8 @@ const Summary = () => {
         
       }));
 
+      console.log("order items detailed log is ", orderItems )
+
       const orderDetails = {
         items: orderItems,
         totalItems: items.length,
@@ -84,6 +86,8 @@ const Summary = () => {
         orderTime: new Date().toLocaleString(),
         confirmationId, // Add confirmationId to order details
       };
+
+      console.log("order items detailed log is ", orderDetails )
 
       setPaymentCompleted(true); // Set payment completion state
       setOrderDetails(orderDetails); // Set order details
@@ -93,7 +97,17 @@ const Summary = () => {
       // setCustomerAddress('123 Main St, City, Country');
       // setCustomerEmail('customer@example.com');
 
-      console.log("order details", orderDetails);
+      // console.log("order details", orderDetails);
+
+      // orders to be pushed to the database
+      // Flattening the orderItems array
+      
+      // SQL INSERT statement for the order_details table
+      const orderDetailsInsertSQL = `INSERT INTO nekikx_ecommerce.order_details (confirmation_id, order_time, total_items, order_total)
+      VALUES ('${orderDetails.confirmationId}', '${orderDetails.orderTime}', ${orderDetails.totalItems}, ${orderDetails.orderTotal});`;
+
+      // Now you can use these SQL statements to insert your data into your PrismaDB
+      console.log("Order Details Insert SQL:", orderDetailsInsertSQL);
 
       removeAll(); // Remove all items from the cart
     }

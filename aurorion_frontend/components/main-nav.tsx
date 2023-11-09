@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas} from '@fortawesome/free-solid-svg-icons'
 import { Bold } from "lucide-react";
+import { useEffect, useState } from 'react';
 
 library.add(fas)
 
@@ -21,7 +22,17 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
   const router = useRouter(); // Use useRouter from next/navigation
 
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  // const userData = JSON.parse(localStorage.getItem('userData'));
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      setUserData(JSON.parse(userData));
+    }
+  }, []);
+
 
   const routes = data.map((route) => ({
     href: `/category/${route.id}`,
