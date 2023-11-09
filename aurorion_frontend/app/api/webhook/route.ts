@@ -6,7 +6,7 @@ import prismadb from "@/components/order-details/prismadb";
 import orderDetailsInsertSQL from "../../(routes)/cart/components/summary";
 import confirmationId from "../../(routes)/cart/components/summary";
 import orderDetails from "../../(routes)/cart/components/summary";
-import orderItems from "../../(routes)/cart/components/summary";
+// import orderItems from "../../(routes)/cart/components/summary";
 
 export async function POST(req: Request) {
   const body = await req.text();
