@@ -139,3 +139,25 @@ model OrderItem {
   @@index([orderId])
   @@index([productId])
 }
+
+
+model order_details {
+  confirmation_id String   @
+  order_time     DateTime
+  total_items    Int
+  order_total    Decimal
+
+  @@index([confirmation_id])
+}
+
+// Prisma schema for order_items table
+model order_items {
+  confirmation_id String   @id 
+  name           String   
+  price          Decimal  
+  size           String   
+  color          String   
+  category_name  String  
+
+  @@index([confirmation_id]) 
+}

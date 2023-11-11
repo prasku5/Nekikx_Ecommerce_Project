@@ -1,6 +1,1 @@
-{
-  "/(dashboard)/[storeId]/(routes)/page": "app/(dashboard)/[storeId]/(routes)/page.js",
-  "/(dashboard)/[storeId]/(routes)/products/page": "app/(dashboard)/[storeId]/(routes)/products/page.js",
-  "/(dashboard)/[storeId]/(routes)/orders/page": "app/(dashboard)/[storeId]/(routes)/orders/page.js",
-  "/(dashboard)/[storeId]/(routes)/billboards/page": "app/(dashboard)/[storeId]/(routes)/billboards/page.js"
-}
+{}

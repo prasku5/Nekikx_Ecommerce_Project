@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   const signature = headers().get("Stripe-Signature") as string;
 
-  let event: Stripe.Event; 
+  let event: Stripe.Event;  
 
   try {
     event = stripe.webhooks.constructEvent(
@@ -21,6 +21,8 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     )
   } catch (error: any) {
+    console.log("Webhook Error inside the try block");
+    // console.log(window.localStorage.getItem('api-webhook-logs'));
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 })
   }
 
@@ -44,3 +46,5 @@ export async function POST(req: Request) {
   }
   return new NextResponse(null, { status: 200 })
 }
+
+

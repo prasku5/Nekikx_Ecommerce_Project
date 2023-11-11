@@ -11,6 +11,6 @@ public class AurorionBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AurorionBackendApplication.class, args);
 	}
-
+	
 }
 	
