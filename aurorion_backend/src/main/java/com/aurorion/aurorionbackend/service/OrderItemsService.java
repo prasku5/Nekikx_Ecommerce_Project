@@ -1,5 +1,5 @@
 package com.aurorion.aurorionbackend.service;
-import com.aurorion.aurorionbackend.model.OrderItems;
+import com.aurorion.aurorionbackend.model.orderItemsPayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +16,13 @@ public class OrderItemsService {
     @Autowired
     private OrderItemsRepository orderItemsRepository;
 
-    public List<OrderItems> getAllOrderItems() {
+    public List<orderItemsPayload> getAllOrderItems() {
         return orderItemsRepository.findAll();
     }
 
     // Other CRUD methods (e.g., getById, save, update, delete)
-    public OrderItems saveOrderItems(OrderItems orderItems) {
-        return orderItemsRepository.save(orderItems);
+    public orderItemsPayload saveOrderItems(orderItemsPayload orderItemsPayload) {
+        return orderItemsRepository.save(orderItemsPayload);
     }
 
 }

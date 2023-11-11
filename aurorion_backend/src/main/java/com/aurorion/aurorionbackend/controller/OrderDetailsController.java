@@ -1,5 +1,5 @@
 package com.aurorion.aurorionbackend.controller;
-import com.aurorion.aurorionbackend.model.OrderDetails;
+import com.aurorion.aurorionbackend.model.orderDetailsSql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.aurorion.aurorionbackend.service.OrderDetailsService;
@@ -13,15 +13,21 @@ public class OrderDetailsController {
     private OrderDetailsService orderDetailsService;
 
     @GetMapping
-    public List<OrderDetails> getAllOrderDetails() {
-        return orderDetailsService.getAllOrderDetails();
+    public List<orderDetailsSql> getAllOrderDetails() {
+        System.out.printf("Getting all order details%n");
+        List<orderDetailsSql> orderDetailsList = orderDetailsService.getAllOrderDetails();
+        System.out.printf("Retrieved %d order details%n", orderDetailsList.size());
+        return orderDetailsList;
     }
 
     // Other CRUD endpoints (e.g., getById, create, update, delete)
 
     @PostMapping
-    public OrderDetails addOrderDetails(@RequestBody OrderDetails orderDetails) {
-        return orderDetailsService.saveOrderDetails(orderDetails);
+    public orderDetailsSql addOrderDetails(@RequestBody orderDetailsSql orderDetails) {
+        System.out.printf("Received request to add order details: %s%n", orderDetails);
+        orderDetailsSql savedOrderDetails = orderDetailsService.saveOrderDetails(orderDetails);
+        System.out.printf("Order details added successfully: %s%n", savedOrderDetails);
+        return savedOrderDetails;
     }
-
+    
 }
