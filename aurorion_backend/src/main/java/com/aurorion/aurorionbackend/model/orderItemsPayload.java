@@ -3,21 +3,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "order_items")
+@BatchSize(size = 1000)
 public class orderItemsPayload {
 
     @Id
     @Column(name = "confirmation_id")
     private String confirmationId;
-    @Column(name = "product_name")
+    @Column(name = "name")
     private String name;
-    @Column(name = "product_price")
+    @Column(name = "price")
     private double price;
-    @Column(name = "product_size")
+    @Column(name = "size")
     private String size;
-    @Column(name = "product_color")
+    @Column(name = "color")
     private String color;
     @Column(name = "category_name")
     private String categoryName;

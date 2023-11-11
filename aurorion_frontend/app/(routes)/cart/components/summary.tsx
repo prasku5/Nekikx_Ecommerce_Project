@@ -77,22 +77,53 @@ const Summary = () => {
 
       console.log("order items detailed log is ", orderItems);
 
-      orderItems.forEach((orderItem) => {
-        const orderItemsPayload = {
-          confirmationId: confirmationId,
-          name: orderItem.name,
-          price: orderItem.price,
-          size: orderItem.size,
-          color: orderItem.color,
-          CategoryName: orderItem.CategoryName,
-        };
+      const orderItemsPayload = orderItems.map((item) => ({
+        confirmationId: confirmationId,
+        name: item.name,
+        price: item.price,
+        size: item.size,
+        color: item.color,
+        categoryName: item.CategoryName,
+      }));
 
-        // Send a POST request to your Spring Boot endpoint for each item
+      console.log("order items payload is ", orderItemsPayload);
+      console.log("type of order items payload is ", typeof orderItemsPayload);
+
+      // const orderItemsPayload = {
+      //   confirmationId: confirmationId,
+      //   name: orderItems[0].name,
+      //   price: orderItems[0].price,
+      //   size: orderItems[0].size,
+      //   color: orderItems[0].color,
+      //   categoryName: orderItems[0].CategoryName
+      // };
+
+      // const orderItem = {
+      //   name: "Product 1",
+      //   price: 19.99,
+      //   size: "Medium",
+      //   color: "Red",
+      //   CategoryName: "Clothing",
+      // };
+
+      // const orderItemsPayload = {
+      //   confirmationId: confirmationId,
+      //   name: orderItem.name,
+      //   price: orderItem.price,
+      //   size: orderItem.size,
+      //   color: orderItem.color,
+      //   categoryName: orderItem.CategoryName,
+      // };
+
+      if (orderItems.length > 0) {
+        // send order items to backend
+        // Send a POST request to your Spring Boot endpoint
         fetch("http://localhost:8080/order-items/", {
           method: "POST",
+          // mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            // "Allow-Cross-Origin-Origin": "*", // Allow CORS
           },
           body: JSON.stringify(orderItemsPayload),
         })
@@ -100,15 +131,19 @@ const Summary = () => {
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json();
+            return response.json(); // You can remove this line if the server doesn't return JSON
           })
           .then((data) => {
+            // Handle success, if needed
             console.log("Success:", data);
           })
           .catch((error) => {
+            // Handle errors
             console.error("Error:", error);
           });
-      });
+      } else {
+        console.log("No items in the order, not sending POST request.");
+      }
 
       const orderDetails = {
         items: orderItems,
@@ -134,7 +169,7 @@ const Summary = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            "Allow-Cross-Origin-Origin": "*", // Allow CORS
           },
           body: JSON.stringify(orderDetailsSql),
         })
@@ -142,12 +177,14 @@ const Summary = () => {
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json();
+            return response.json(); // You can remove this line if the server doesn't return JSON
           })
           .then((data) => {
+            // Handle success, if needed
             console.log("Success:", data);
           })
           .catch((error) => {
+            // Handle errors
             console.error("Error:", error);
           });
       } else {

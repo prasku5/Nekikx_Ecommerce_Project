@@ -5,7 +5,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 import com.aurorion.aurorionbackend.repository.OrderItemsRepository;
-
 import java.util.List;
 
 @Service
@@ -21,8 +20,8 @@ public class OrderItemsService {
     }
 
     // Other CRUD methods (e.g., getById, save, update, delete)
-    public orderItemsPayload saveOrderItems(orderItemsPayload orderItemsPayload) {
-        return orderItemsRepository.save(orderItemsPayload);
+    public List<orderItemsPayload> saveOrderItems(List<orderItemsPayload> orderItemsPayload) {
+        return orderItemsRepository.saveAll(orderItemsPayload);
     }
 
 }
