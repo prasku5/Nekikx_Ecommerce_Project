@@ -41,9 +41,9 @@ public class OrderItemsController {
     //     return savedOrderItems;
     // }
      @PostMapping
-    public ResponseEntity<List<orderItemsPayload>> saveOrderItems(@RequestBody List<orderItemsPayload> orderItemsPayloadList) {
+    public ResponseEntity <List<orderItemsPayload>> saveOrderItems(@RequestBody List<orderItemsPayload> orderItemsPayloadList) {
         System.out.println("Received payload in the backend for orderitems is : " + orderItemsPayloadList);
-        if (orderItemsPayloadList != null && !orderItemsPayloadList.isEmpty()) {
+        if (orderItemsPayloadList != null) {
             orderItemsService.saveOrderItems(orderItemsPayloadList);
             System.out.println("Order items saved successfully.");
             return new ResponseEntity<>(HttpStatus.CREATED);

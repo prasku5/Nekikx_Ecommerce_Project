@@ -9,6 +9,15 @@ import Currency from "@/components/ui/currency"; // Import a custom 'Currency' c
 import useCart from "@/hooks/use-cart"; // Import a custom 'useCart' hook for managing the shopping cart state
 import { useRouter } from "next/navigation"; // Import 'useRouter' from 'next/navigation' for accessing the router
 
+async function exampleAsyncFunction() {
+  console.log("Start");
+
+  // Use await with a Promise to introduce a wait
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  console.log("After 2 milli seconds");
+}
+
 // Function to generate a random alphanumeric order confirmation ID
 function generateOrderConfirmationId(length) {
   const characters =
@@ -23,6 +32,7 @@ function generateOrderConfirmationId(length) {
 
 // Define the 'Summary' component
 const Summary = () => {
+
   const searchParams = useSearchParams(); // Get query parameters from the URL
   const items = useCart((state) => state.items); // Get items from the shopping cart using the 'useCart' hook
 
@@ -48,9 +58,11 @@ const Summary = () => {
     confirmationId: "", // Add confirmationId
   });
 
+
   // // State variables for customer address and email
   // const [customerAddress, setCustomerAddress] = useState('Customer Address');
   // const [customerEmail, setCustomerEmail] = useState('customer@example.com');
+
 
   // Calculate the total price of the items in the cart
   const totalPrice = items.reduce((total, item) => {
@@ -89,62 +101,39 @@ const Summary = () => {
       console.log("order items payload is ", orderItemsPayload);
       console.log("type of order items payload is ", typeof orderItemsPayload);
 
-      // const orderItemsPayload = {
-      //   confirmationId: confirmationId,
-      //   name: orderItems[0].name,
-      //   price: orderItems[0].price,
-      //   size: orderItems[0].size,
-      //   color: orderItems[0].color,
-      //   categoryName: orderItems[0].CategoryName
-      // };
-
-      // const orderItem = {
-      //   name: "Product 1",
-      //   price: 19.99,
-      //   size: "Medium",
-      //   color: "Red",
-      //   CategoryName: "Clothing",
-      // };
-
-      // const orderItemsPayload = {
-      //   confirmationId: confirmationId,
-      //   name: orderItem.name,
-      //   price: orderItem.price,
-      //   size: orderItem.size,
-      //   color: orderItem.color,
-      //   categoryName: orderItem.CategoryName,
-      // };
-
       if (orderItems.length > 0) {
         // send order items to backend
-        // Send a POST request to your Spring Boot endpoint
-        fetch("http://localhost:8080/order-items/", {
-          method: "POST",
-          // mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-            // "Allow-Cross-Origin-Origin": "*", // Allow CORS
-          },
-          body: JSON.stringify(orderItemsPayload),
+      // Send a POST request to your Spring Boot endpoint
+      fetch("http://localhost:8080/order-items/", {
+        method: "POST",
+        // mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+          // "Allow-Cross-Origin-Origin": "*", // Allow CORS
+        },
+        body: JSON.stringify(orderItemsPayload),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json(); // You can remove this line if the server doesn't return JSON
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json(); // You can remove this line if the server doesn't return JSON
-          })
-          .then((data) => {
-            // Handle success, if needed
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            // Handle errors
-            console.error("Error:", error);
-          });
-      } else {
-        console.log("No items in the order, not sending POST request.");
+        .then((data) => {
+          // Handle success, if needed
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error:", error);
+        });
+    } else {
+      console.log("No items in the order, not sending POST request.");
       }
 
+
+      exampleAsyncFunction();
+      
       const orderDetails = {
         items: orderItems,
         totalItems: items.length,
@@ -189,7 +178,7 @@ const Summary = () => {
           });
       } else {
         console.log("No items in the order, not sending POST request.");
-      }
+}
 
       setPaymentCompleted(true); // Set payment completion state
 
@@ -288,3 +277,4 @@ const Summary = () => {
 
 // Export the 'Summary' component as the default export of this module
 export default Summary;
+

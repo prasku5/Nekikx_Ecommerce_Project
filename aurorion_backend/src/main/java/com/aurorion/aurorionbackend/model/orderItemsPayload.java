@@ -1,6 +1,8 @@
 package com.aurorion.aurorionbackend.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.BatchSize;
@@ -11,6 +13,9 @@ import org.hibernate.annotations.BatchSize;
 public class orderItemsPayload {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id; // This is the primary key
     @Column(name = "confirmation_id")
     private String confirmationId;
     @Column(name = "name")
