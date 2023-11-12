@@ -15,10 +15,10 @@ public class SqlController {
 
     @PostMapping("/execute-sql")
     public ResponseEntity<String> executeSql(@RequestBody Map<String, String> requestBody) {
-        String confirmationId = requestBody.get("confirmationId");
-        System.out.println("Confirmation ID: " + confirmationId);
+        String confirmationIdSaved = requestBody.get("confirmationIdSaved");
+        System.out.println("Confirmation ID: " + confirmationIdSaved);
         // Call the service method to execute the SQL statement
-        sqlService.executeSqlStatement(confirmationId);
+        sqlService.executeSqlStatement(confirmationIdSaved);
 
         return ResponseEntity.ok("SQL statement executed successfully");
     }    

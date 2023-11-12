@@ -7,26 +7,6 @@ import { toast } from "react-hot-toast"; // Import 'toast' for displaying notifi
 import Button from "@/components/ui/button"; // Import a custom 'Button' component
 import Currency from "@/components/ui/currency"; // Import a custom 'Currency' component
 import useCart from "@/hooks/use-cart"; // Import a custom 'useCart' hook for managing the shopping cart state
-import { useRouter } from "next/navigation"; // Import 'useRouter' from 'next/navigation' for accessing the router
-
-async function exampleAsyncFunction() {
-  console.log("Start");
-
-  // Use await with a Promise to introduce a wait
-  await new Promise(resolve => setTimeout(resolve, 200));
-
-  console.log("After 2 milli seconds");
-}
-
-async function exampleAsyncSqlFunction() {
-  console.log("Start");
-
-  // Use await with a Promise to introduce a wait
-  await new Promise(resolve => setTimeout(resolve, 300));
-
-  console.log("After 3 milli seconds");
-}
-
 
 // Function to generate a random alphanumeric order confirmation ID
 function generateOrderConfirmationId(length) {
@@ -42,11 +22,14 @@ function generateOrderConfirmationId(length) {
 
 // Define the 'Summary' component
 const Summary = () => {
-
+  const [orderItemsPosted, setOrderItemsPosted] = useState(false); // New state variable
+  const [orderDetailsPosted, setOrderDetailsPosted] = useState(false); // New state variable
+  const [paymentCompleted, setPaymentCompleted] = useState(false); // Add state for payment completion
+  const removeAll = useCart((state) => state.removeAll);  // Get a function to remove all items from the cart using the 'useCart' hook
+  const [confirmationIdSaved, setConfirmationId] = useState(""); // New state variable
   const searchParams = useSearchParams(); // Get query parameters from the URL
   const items = useCart((state) => state.items); // Get items from the shopping cart using the 'useCart' hook
 
-  const [paymentCompleted, setPaymentCompleted] = useState(false); // Add state for payment completion
   const [orderDetails, setOrderDetails] = useState<{
     items: {
       name: string;
@@ -68,25 +51,26 @@ const Summary = () => {
     confirmationId: "", // Add confirmationId
   });
 
-
   // // State variables for customer address and email
   // const [customerAddress, setCustomerAddress] = useState('Customer Address');
   // const [customerEmail, setCustomerEmail] = useState('customer@example.com');
-
 
   // Calculate the total price of the items in the cart
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
   }, 0);
 
-  // Get a function to remove all items from the cart using the 'useCart' hook
-  const removeAll = useCart((state) => state.removeAll);
+
 
   useEffect(() => {
     if (searchParams?.get("success")) {
       toast.success("Payment completed.");
 
       const confirmationId = generateOrderConfirmationId(10); // Generate a 10-character alphanumeric ID
+      
+      
+      console.log("confirmationId in first useEffect is ", confirmationId);
+      
 
       // Define order details
       const orderItems = items.map((item) => ({
@@ -112,38 +96,37 @@ const Summary = () => {
       console.log("type of order items payload is ", typeof orderItemsPayload);
 
       if (orderItems.length > 0) {
+        console.log("order items post request is sent");
         // send order items to backend
-      // Send a POST request to your Spring Boot endpoint
-      fetch("http://localhost:8080/order-items/", {
-        method: "POST",
-        // mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-          // "Allow-Cross-Origin-Origin": "*", // Allow CORS
-        },
-        body: JSON.stringify(orderItemsPayload),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json(); // You can remove this line if the server doesn't return JSON
+        // Send a POST request to your Spring Boot endpoint
+        fetch("http://localhost:8080/order-items/", {
+          method: "POST",
+          // mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+            // "Allow-Cross-Origin-Origin": "*", // Allow CORS
+          },
+          body: JSON.stringify(orderItemsPayload),
         })
-        .then((data) => {
-          // Handle success, if needed
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          // Handle errors
-          console.error("Error:", error);
-        });
-    } else {
-      console.log("No items in the order, not sending POST request.");
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            setOrderItemsPosted(true); // Set the state variable on success
+            return response.json(); // You can remove this line if the server doesn't return JSON
+          })
+          .then((data) => {
+            // Handle success, if needed
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            // Handle errors
+            console.error("Error:", error);
+          });
+      } else {
+        console.log("No items in the order, not sending POST request.");
       }
 
-
-      exampleAsyncFunction();
-      
       const orderDetails = {
         items: orderItems,
         totalItems: items.length,
@@ -152,8 +135,11 @@ const Summary = () => {
         confirmationId, // Add confirmationId to order details
       };
 
+      setOrderDetails(orderDetails); // Set order details state
+
       // send order details to backend
       if (orderItems.length > 0) {
+        console.log("order details post request is sent");
         const orderDetailsSql = {
           confirmationId: confirmationId,
           orderTime: orderDetails.orderTime,
@@ -176,6 +162,7 @@ const Summary = () => {
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
+            setOrderDetailsPosted(true); // Set the state variable on success
             return response.json(); // You can remove this line if the server doesn't return JSON
           })
           .then((data) => {
@@ -188,46 +175,53 @@ const Summary = () => {
           });
       } else {
         console.log("No items in the order, not sending POST request.");
-}
-
-      exampleAsyncSqlFunction();
-
-      // Assuming your backend endpoint for executing the SQL statement is '/execute-sql'
-        const executeSqlEndpoint = 'http://localhost:8080/execute-sql';
-
-
-        fetch(executeSqlEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ confirmationId }), // Include any necessary data
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json(); // You can remove this line if the server doesn't return JSON
-          })
-          .then((data) => {
-            // Handle success, if needed
-            console.log('Success:', data);
-          })
-          .catch((error) => {
-            // Handle errors
-            console.error('Error:', error);
-          });
+      }
 
       setPaymentCompleted(true); // Set payment completion state
-
-      setOrderDetails(orderDetails); // Set order details
+      setOrderDetails(orderDetails);
+      setConfirmationId(confirmationId); // Set the confirmationId state variable
+      console.log("confirmationIdSaved in first useEffect is ", confirmationIdSaved);
       removeAll(); // Remove all items from the cart
     }
 
     if (searchParams?.get("canceled")) {
       toast.error("Something went wrong.");
     }
+    
   }, [searchParams, removeAll]);
+
+  // New useEffect to monitor orderItemsPosted and orderDetailsPosted states
+  useEffect(() => {
+    if (orderItemsPosted && orderDetailsPosted) {
+      console.log("order items and details post request is sent");
+      console.log("confirmationIdSaved in second useEffect is ", confirmationIdSaved);
+      // Both orderItemsPosted and orderDetailsPosted are true
+      // Perform the POST request to 'http://localhost:8080/execute-sql'
+      const executeSqlEndpoint = "http://localhost:8080/execute-sql";
+
+      fetch(executeSqlEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ confirmationIdSaved }), // Include any necessary data
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json(); // You can remove this line if the server doesn't return JSON
+        })
+        .then((data) => {
+          // Handle success, if needed
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error:", error);
+        });
+    }
+  }, [orderItemsPosted, orderDetailsPosted, confirmationIdSaved]);
 
   // New useEffect to monitor paymentCompleted state
   useEffect(() => {
@@ -315,4 +309,3 @@ const Summary = () => {
 
 // Export the 'Summary' component as the default export of this module
 export default Summary;
-
