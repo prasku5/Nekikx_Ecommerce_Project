@@ -18,6 +18,16 @@ async function exampleAsyncFunction() {
   console.log("After 2 milli seconds");
 }
 
+async function exampleAsyncSqlFunction() {
+  console.log("Start");
+
+  // Use await with a Promise to introduce a wait
+  await new Promise(resolve => setTimeout(resolve, 300));
+
+  console.log("After 3 milli seconds");
+}
+
+
 // Function to generate a random alphanumeric order confirmation ID
 function generateOrderConfirmationId(length) {
   const characters =
@@ -179,10 +189,13 @@ const Summary = () => {
       } else {
         console.log("No items in the order, not sending POST request.");
 }
+
+      exampleAsyncSqlFunction();
+
       // Assuming your backend endpoint for executing the SQL statement is '/execute-sql'
         const executeSqlEndpoint = 'http://localhost:8080/execute-sql';
 
-        
+
         fetch(executeSqlEndpoint, {
           method: 'POST',
           headers: {

@@ -1,20 +1,20 @@
 {
   "pages": {
-    "/(root)/(routes)/page": [
+    "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(root)/(routes)/page.js"
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
     ],
     "/(root)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(root)/layout.js"
     ],
-    "/layout": [
+    "/(root)/(routes)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+      "static/chunks/app/(root)/(routes)/page.js"
     ],
     "/(dashboard)/[storeId]/(routes)/page": [
       "static/chunks/webpack.js",
