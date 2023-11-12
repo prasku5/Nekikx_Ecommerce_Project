@@ -142,7 +142,7 @@ model OrderItem {
 
 
 model order_details {
-  confirmation_id String   @
+  confirmation_id String   @id
   order_time     DateTime
   total_items    Int
   order_total    Decimal
@@ -150,14 +150,16 @@ model order_details {
   @@index([confirmation_id])
 }
 
-// Prisma schema for order_items table
+
 model order_items {
-  confirmation_id String   @id 
+  id             Int      @id @default(autoincrement())
+  confirmation_id String    
   name           String   
   price          Decimal  
   size           String   
   color          String   
   category_name  String  
 
-  @@index([confirmation_id]) 
+  @@index([confirmation_id])
+  @@map(name: "order_items") // Map the name to match the table name 
 }

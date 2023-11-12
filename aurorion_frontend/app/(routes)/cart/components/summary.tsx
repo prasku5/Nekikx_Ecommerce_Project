@@ -179,6 +179,31 @@ const Summary = () => {
       } else {
         console.log("No items in the order, not sending POST request.");
 }
+      // Assuming your backend endpoint for executing the SQL statement is '/execute-sql'
+        const executeSqlEndpoint = 'http://localhost:8080/execute-sql';
+
+        
+        fetch(executeSqlEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ confirmationId }), // Include any necessary data
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // You can remove this line if the server doesn't return JSON
+          })
+          .then((data) => {
+            // Handle success, if needed
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            // Handle errors
+            console.error('Error:', error);
+          });
 
       setPaymentCompleted(true); // Set payment completion state
 
