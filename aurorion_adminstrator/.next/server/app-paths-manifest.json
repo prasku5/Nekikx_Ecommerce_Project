@@ -1,12 +1,7 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/[storeId]/categories/route": "app/api/[storeId]/categories/route.js",
-  "/api/[storeId]/products/route": "app/api/[storeId]/products/route.js",
-  "/api/[storeId]/checkout/route": "app/api/[storeId]/checkout/route.js",
   "/(dashboard)/[storeId]/(routes)/page": "app/(dashboard)/[storeId]/(routes)/page.js",
-  "/api/[storeId]/products/[productId]/route": "app/api/[storeId]/products/[productId]/route.js",
-  "/(dashboard)/[storeId]/(routes)/orders/page": "app/(dashboard)/[storeId]/(routes)/orders/page.js",
+  "/(dashboard)/[storeId]/(routes)/billboards/page": "app/(dashboard)/[storeId]/(routes)/billboards/page.js",
   "/(dashboard)/[storeId]/(routes)/categories/page": "app/(dashboard)/[storeId]/(routes)/categories/page.js",
-  "/(dashboard)/[storeId]/(routes)/sizes/page": "app/(dashboard)/[storeId]/(routes)/sizes/page.js",
-  "/(dashboard)/[storeId]/(routes)/billboards/page": "app/(dashboard)/[storeId]/(routes)/billboards/page.js"
+  "/(dashboard)/[storeId]/(routes)/orders/page": "app/(dashboard)/[storeId]/(routes)/orders/page.js",
+  "/(dashboard)/[storeId]/(routes)/sizes/page": "app/(dashboard)/[storeId]/(routes)/sizes/page.js"
 }

@@ -1,6 +1,105 @@
+# [Nekikx]()[ E-Commerce Store ](https://github.com/demitraps/ecommerce-store-next13#full-stack-nextjs-13-e-commerce-store--nextjs-13-app-router-react-tailwind-prisma-mysql)
 
+Welcome to Nekikx ecommerce store, a one-stop destination for all the shopping needs! This repository has following features
 
-SQL Definitions
+## [Features](https://github.com/demitraps/ecommerce-store-next13#features)
+
+* Login/Sign up Functionality
+* View different categories
+* Featured products in homepage
+* Preview card of product
+* Product page with color and size filters
+* Related items display
+* Add to cart
+* Stripe checkout with multiple payments support
+* Add reviews to products
+
+## [Tech Stack](https://github.com/demitraps/ecommerce-store-next13#tech-stack)
+
+**Frontend:**
+
+**React, Next.JS 13, TypeScript, TailwindCSS**
+
+**Authentication:** 	Clerk
+****Data validation:** 	**Zod
+****FileUploads:** 		**Cloudinary
+****Components:** 	**Shadcn
+**Database:** 		MySQL - PlanetScale with Prisma ORM
+
+**Backend:**
+
+**Framework**:		Springboot
+Language:		Java 17
+
+### [Cloning the repository]()
+
+```shell
+  git clone https://github.com/prasku5/Nekikx_Ecommerce_Project.git
+```
+
+### [Start the app]()
+
+Open the root folder in VSCode
+
+**In terminal 1 window ( Frontend application)**
+
+```
+ls
+```
+
+After this command out should be like this
+
+LICENSE                         aurorion_adminstrator           node_modules
+Project_proposal_masked.pdf     aurorion_backend                package-lock.json
+README.md                       aurorion_frontend               package.json
+
+```
+cd aurorion_frontend
+```
+
+```
+npm install 
+```
+
+```
+npm run dev
+```
+
+**[In terminal 2 window ( Administrator application)]()**
+
+```shell
+ls
+```
+
+```
+cd aurorion_adminstrator
+```
+
+```
+npm install 
+```
+
+```
+npm run dev
+```
+
+**[In terminal 3 window ( Springboot application - Backend)]()**
+
+```shell
+ls
+```
+
+```
+cd aurorion_backend
+```
+
+```
+cd ./src/main/java/com/aurorion/aurorionbackend/
+```
+
+**Run AurorionBackendApplication.java Application** 
+
+**[SQL Definitions]()**
 
 | Tables list     |                    |
 | :-------------- | :----------------- |
@@ -25,7 +124,6 @@ CREATE TABLE Billboard (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-
 ```
 CREATE TABLE Category (
   id varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -40,7 +138,6 @@ CREATE TABLE Category (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-
 ```
 CREATE TABLE Color (
   id varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -54,7 +151,6 @@ CREATE TABLE Color (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-
 ```
 CREATE TABLE Image (
   id varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -66,8 +162,6 @@ CREATE TABLE Image (
   KEY Image_productId_idx (productId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
-
-
 
 ```
 CREATE TABLE Order (
@@ -83,8 +177,6 @@ CREATE TABLE Order (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-
-
 ```
 CREATE TABLE order_details (
   confirmation_id varchar(191) NOT NULL,
@@ -95,8 +187,6 @@ CREATE TABLE order_details (
   KEY order_details_confirmation_id_idx (confirmation_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
-
-
 
 ```
 CREATE TABLE order_items (
@@ -111,8 +201,6 @@ CREATE TABLE order_items (
   KEY order_items_confirmation_id_idx (confirmation_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
-
-
 
 ```
 CREATE TABLE order_items_joined (
@@ -130,8 +218,6 @@ CREATE TABLE order_items_joined (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
 
-
-
 ```
 CREATE TABLE OrderItem (
   id varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -142,8 +228,6 @@ CREATE TABLE OrderItem (
   KEY OrderItem_productId_idx (productId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
-
-
 
 ```
 CREATE TABLE Product (
@@ -166,8 +250,6 @@ CREATE TABLE Product (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-
-
 ```
 CREATE TABLE product_reviews (
   id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -180,8 +262,6 @@ CREATE TABLE product_reviews (
   UNIQUE KEY id (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
-
-
 
 ```
 CREATE TABLE Size (
@@ -196,8 +276,6 @@ CREATE TABLE Size (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-
-
 ```
 CREATE TABLE Store (
   id varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -208,8 +286,6 @@ CREATE TABLE Store (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
-
-
 
 ```
 CREATE TABLE users (
@@ -226,5 +302,5 @@ CREATE TABLE users (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
 
-|  |  |
-| - | - |
+| Reference Credits to :  https://github.com/demitraps/ |  |
+| ------------------------------------------------------- | - |
