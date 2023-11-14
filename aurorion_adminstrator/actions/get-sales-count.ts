@@ -1,13 +1,12 @@
 import prismadb from "@/lib/prismadb";
 
 export const getSalesCount = async (storeId: string) => {
-  const salesCount = await prismadb.order.count({
-    where: {
-      storeId,
-      isPaid: true
-    }
-  })
 
-  return salesCount;
+  const salesCountByConfirmationId = await prismadb.order_items_joined.groupBy({
+    by: ['confirmation_id'],
+    _count: true,
+  });
+
+  return salesCountByConfirmationId;
 
 }

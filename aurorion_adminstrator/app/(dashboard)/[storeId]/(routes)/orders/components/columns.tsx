@@ -31,7 +31,7 @@ export const columns: ColumnDef<OrderItemDetailColumn>[] = [
   },
   {
     accessorKey: "price",
-    header: "Price",
+    header: "Product Price",
   },
   {
     accessorKey: "size",
@@ -49,10 +49,10 @@ export const columns: ColumnDef<OrderItemDetailColumn>[] = [
     accessorKey: "order_time",
     header: "Order Time",
   },
-  {
-    accessorKey: "total_items",
-    header: "Total Overall Ordered Items",
-  },
+  // {
+  //   accessorKey: "total_items",
+  //   header: "Total Overall Ordered Items",
+  // },
   {
     accessorKey: "order_total",
     header: "Order Total",

@@ -11,25 +11,7 @@ interface OrderClientProps {
 export const OrderItemDetailClient: React.FC<OrderClientProps> = ({ data }) => {
   const uniqueConfirmationIds = new Set(data.map((item) => item.confirmation_id));
   const confirmationIdCount = uniqueConfirmationIds.size;
-
-  // Fix the type of the orderTotal variable.
-  const orderTotal: number = data.reduce((total, item) => total + item.price, 0);
-
-  // Add a key prop to the OrderTotalComponent component.
-  const OrderTotalComponent = ({ orderTotal }: { orderTotal: number }) => {
-    // Assuming prices is a string like "$59.00$299.00$179.00$1,199.00$299.00$25.00$1,200.00"
-    const cleanedPrices = String(orderTotal).replace(/\$/g, "");
-    const numericalPrices = cleanedPrices.split("$").filter(Boolean).map(parseFloat); // Split and convert to numbers
-
-    const total = numericalPrices.reduce((acc, price) => acc + price, 0);
-
-    return (
-      <div key={orderTotal}>
-        <strong>Total Price:</strong> {total}
-      </div>
-    );
-  };
-
+    
   return (
     <>
       <Heading
@@ -38,9 +20,6 @@ export const OrderItemDetailClient: React.FC<OrderClientProps> = ({ data }) => {
       />
       <Separator />
       <DataTable searchKey="name" columns={columns} data={data} />
-      <div style={{ marginTop: "10px" }}>
-        <OrderTotalComponent orderTotal={orderTotal} />
-      </div>
     </>
   );
 };
