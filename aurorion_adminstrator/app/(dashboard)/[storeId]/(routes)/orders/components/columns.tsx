@@ -16,15 +16,14 @@ export type OrderItemDetailColumn = {
   order_total: number;
 };
 
+export type ProductsSoldColumn = {
+  name: string;
+  numberOfProductsSold: number;
+};
+
+
 export const columns: ColumnDef<OrderItemDetailColumn>[] = [
-  {
-    accessorKey: "id",
-    header: "ID",
-  },
-  {
-    accessorKey: "confirmation_id",
-    header: "Confirmation ID",
-  },
+
   {
     accessorKey: "name",
     header: "Product Name",
@@ -59,4 +58,17 @@ export const columns: ColumnDef<OrderItemDetailColumn>[] = [
   },
 
 
+];
+
+
+export const products_sold_columns: ColumnDef<ProductsSoldColumn>[] = [
+
+  {
+    accessorKey: "name",
+    header: "Product Name",
+  },
+  {
+    accessorKey: "numberOfProductsSold",
+    header: "Total Products Sold",
+  }
 ];

@@ -1,25 +1,50 @@
 {
   "pages": {
+    "/(dashboard)/[storeId]/(routes)/orders/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/orders/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/(dashboard)/[storeId]/(routes)/orders/page": [
+    "/(dashboard)/[storeId]/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/[storeId]/(routes)/orders/page.js"
+      "static/chunks/app/(dashboard)/[storeId]/layout.js"
     ],
     "/(dashboard)/[storeId]/(routes)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/[storeId]/(routes)/page.js"
     ],
-    "/(dashboard)/[storeId]/layout": [
+    "/(dashboard)/[storeId]/(routes)/billboards/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/[storeId]/layout.js"
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/billboards/page.js"
+    ],
+    "/(dashboard)/[storeId]/(routes)/categories/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/categories/page.js"
+    ],
+    "/(dashboard)/[storeId]/(routes)/sizes/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/sizes/page.js"
+    ],
+    "/(dashboard)/[storeId]/(routes)/colors/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/colors/page.js"
+    ],
+    "/(dashboard)/[storeId]/(routes)/products/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/products/page.js"
     ]
   }
 }
