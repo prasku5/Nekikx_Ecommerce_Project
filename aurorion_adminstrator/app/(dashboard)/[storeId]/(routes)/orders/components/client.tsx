@@ -2,7 +2,6 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { OrderItemDetailColumn, ProductsSoldColumn, columns, products_sold_columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
-import { Decimal } from "@prisma/client/runtime/library";
 
 interface OrderClientProps {
   data: OrderItemDetailColumn[];

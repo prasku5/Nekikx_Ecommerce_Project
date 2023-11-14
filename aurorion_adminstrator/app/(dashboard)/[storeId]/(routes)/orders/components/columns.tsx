@@ -25,6 +25,10 @@ export type ProductsSoldColumn = {
 export const columns: ColumnDef<OrderItemDetailColumn>[] = [
 
   {
+    accessorKey: "confirmation_id",
+    header: "Confirmation ID",
+  },
+  {
     accessorKey: "name",
     header: "Product Name",
   },
