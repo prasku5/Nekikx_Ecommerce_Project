@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
@@ -162,4 +163,18 @@ model order_items {
 
   @@index([confirmation_id])
   @@map(name: "order_items") // Map the name to match the table name 
+}
+
+
+model order_items_joined {
+  id             Int      @id @default(autoincrement())
+  confirmation_id String    
+  name           String   
+  price          Decimal  
+  size           String   
+  color          String   
+  category_name  String  
+  order_time     DateTime
+  total_items    Int
+  order_total    Decimal
 }

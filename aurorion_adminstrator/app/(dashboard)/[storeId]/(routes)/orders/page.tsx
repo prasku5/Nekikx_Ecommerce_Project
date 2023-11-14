@@ -1,49 +1,36 @@
-import { format } from "date-fns";
-
-import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
-import { OrderClient } from "./components/client";
-import { OrderColumn } from "./components/columns";
+import { OrderItemDetailClient } from "./components/client";
+import { OrderItemDetailColumn } from "./components/columns";
+import { PrismaClient } from "@prisma/client";
 
-const OrdersPage = async ({ params }: { params: { storeId: string } }) => {
-  const orders = await prismadb.order.findMany({
-    where: {
-      storeId: params.storeId,
-    },
-    include: {
-      orderItems: {
-        include: {
-          product: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+const OrdersItemDetailsPage = async () => {
+  const prisma = new PrismaClient();
 
-  const formattedOrders: OrderColumn[] = orders.map((item) => ({
-    id: item.id,
-    phone: item.phone,
-    address: item.address,
-    products: item.orderItems
-      .map((orderIteam) => orderIteam.product.name)
-      .join(", "),
-    totalPrice: formatter.format(
-      item.orderItems.reduce((total, item) => {
-        return total + Number(item.product.price);
-      }, 0)
-    ),
-    isPaid: item.isPaid,
-    createdAt: format(item.createdAt, "MMMM do, yyyy"),
-  }));
+  const order_items_joined = await prisma.order_items_joined.findMany();
+
+  // Format the price and order total fields.
+  const formattedOrders: OrderItemDetailColumn[] = order_items_joined.map(
+    (item) => ({
+      id: item.id,
+      confirmation_id: item.confirmation_id,
+      name: item.name,
+      price: formatter.format(item.price),
+      size: item.size,
+      color: item.color,
+      category_name: item.category_name,
+      order_time: item.order_time,
+      total_items: item.total_items,
+      order_total: formatter.format(item.order_total),
+    })
+  );
+
   return (
     <div className="flex col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <OrderClient data={formattedOrders} />
+        <OrderItemDetailClient data={formattedOrders} />
       </div>
     </div>
   );
 };
 
-export default OrdersPage;
+export default OrdersItemDetailsPage;
