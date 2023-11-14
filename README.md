@@ -1,1 +1,8 @@
-# Nekikx_Ecommerce
+
+
+SQL Definitions (Admin Panel)
+
+
+```
+
+```
