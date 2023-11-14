@@ -7,6 +7,9 @@ export const getSalesCount = async (storeId: string) => {
     _count: true,
   });
 
-  return salesCountByConfirmationId;
+  // Sum the _count values from each group
+  const totalCount = salesCountByConfirmationId.reduce((sum, group) => sum + group._count, 0);
+
+return totalCount;
 
 }
