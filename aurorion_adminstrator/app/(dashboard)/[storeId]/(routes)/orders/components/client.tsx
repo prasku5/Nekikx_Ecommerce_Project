@@ -18,7 +18,7 @@ export const OrderItemDetailClient: React.FC<OrderClientProps> = ({ data }) => {
   // Add a key prop to the OrderTotalComponent component.
   const OrderTotalComponent = ({ orderTotal }: { orderTotal: number }) => {
     // Assuming prices is a string like "$59.00$299.00$179.00$1,199.00$299.00$25.00$1,200.00"
-    const cleanedPrices = orderTotal.replace(/\$/g, ""); // Remove $ symbols globally
+    const cleanedPrices = String(orderTotal).replace(/\$/g, "");
     const numericalPrices = cleanedPrices.split("$").filter(Boolean).map(parseFloat); // Split and convert to numbers
 
     const total = numericalPrices.reduce((acc, price) => acc + price, 0);
@@ -37,7 +37,7 @@ export const OrderItemDetailClient: React.FC<OrderClientProps> = ({ data }) => {
         description="Manage orders for your store"
       />
       <Separator />
-      <DataTable searchKey="name" columns={columns} data={data}/>
+      <DataTable searchKey="name" columns={columns} data={data} />
       <div style={{ marginTop: "10px" }}>
         <OrderTotalComponent orderTotal={orderTotal} />
       </div>
