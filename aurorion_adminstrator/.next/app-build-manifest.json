@@ -25,6 +25,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/[storeId]/layout.js"
+    ],
+    "/(dashboard)/[storeId]/(routes)/billboards/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/billboards/page.js"
+    ],
+    "/(dashboard)/[storeId]/(routes)/products/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/[storeId]/(routes)/products/page.js"
     ]
   }
 }

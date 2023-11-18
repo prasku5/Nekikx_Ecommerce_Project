@@ -10,7 +10,7 @@ import Summary from "./components/summary";
 
 
 const CartPage = () => {
-  const cart = useCart();
+  const cart = useCart(); // Declares a constant variable cart that uses the useCart hook.
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
