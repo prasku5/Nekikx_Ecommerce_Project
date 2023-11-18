@@ -7,3 +7,17 @@ body,
 :root {
   height: 100%
 }
+
+/* 
+Explanation:
+
+@tailwind base;, @tailwind components;, @tailwind utilities;:
+These are directives used by Tailwind CSS to include the base styles, component styles, and utility styles respectively. They are part of Tailwind's utility-first CSS approach.
+html, body, :root { height: 100%; }:
+
+This is regular CSS styling.
+It selects the html, body, and :root (which is the root element, often used to define CSS custom properties) and sets their height to 100%.
+This is likely done to ensure that the HTML, body, and root element take up the full height of the viewport.
+In summary, this code sets up the basic styling for the HTML, body, and root elements using Tailwind CSS. 
+It ensures that these elements have a height of 100%, possibly to create a full-height layout. 
+The @tailwind directives indicate that Tailwind CSS classes will be used to style these elements, following the utility-first methodology. */

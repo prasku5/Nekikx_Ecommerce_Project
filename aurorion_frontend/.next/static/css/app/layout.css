@@ -672,6 +672,9 @@ video {
 .w-24 {
   width: 6rem;
 }
+.w-48 {
+  width: 12rem;
+}
 .w-6 {
   width: 1.5rem;
 }
@@ -782,11 +785,6 @@ video {
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-y-10 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
-}
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -797,6 +795,9 @@ video {
 }
 .overflow-y-auto {
   overflow-y: auto;
+}
+.rounded {
+  border-radius: 0.25rem;
 }
 .rounded-full {
   border-radius: 9999px;
@@ -914,9 +915,6 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 .pb-24 {
   padding-bottom: 6rem;
@@ -1081,6 +1079,20 @@ body,
 :root {
   height: 100%
 }
+
+/* 
+Explanation:
+
+@tailwind base;, @tailwind components;, @tailwind utilities;:
+These are directives used by Tailwind CSS to include the base styles, component styles, and utility styles respectively. They are part of Tailwind's utility-first CSS approach.
+html, body, :root { height: 100%; }:
+
+This is regular CSS styling.
+It selects the html, body, and :root (which is the root element, often used to define CSS custom properties) and sets their height to 100%.
+This is likely done to ensure that the HTML, body, and root element take up the full height of the viewport.
+In summary, this code sets up the basic styling for the HTML, body, and root elements using Tailwind CSS. 
+It ensures that these elements have a height of 100%, possibly to create a full-height layout. 
+The @tailwind directives indicate that Tailwind CSS classes will be used to style these elements, following the utility-first methodology. */
 
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
